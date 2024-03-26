@@ -29,3 +29,28 @@ with open('recog2.txt', mode='w') as file:
     file.write("\n")
     file.write(result)
     print(" Now file is ready")
+
+
+"""------------------------------------------------------
+AnsysWB_plot_extraction.txt
+#this ansysWB will extract all the modal results defomation plots to the drive locationmentioned in the code:
+# the ouput png image file is used in another macro to create ppt.(Extract_WBImage_Createimage.py)
+model=ExtAPI.DataModel.Project.Model
+geom=model.Geometry
+mesh=model.Mesh
+materials = model.Materials
+analysis = model.Analyses[0]
+solution = analysis.Solution
+connnections=model.Connections
+
+
+for analysis in ExtAPI.DataModel.AnalysisList:
+    analysisName = analysis.Name
+    solution = analysis.Solution
+    for child in solution.Children:
+        childName = child.Name +"_"+ analysisName
+        child.Activate()
+        imagePath ="C:/Users/arpuste/Documents/{}.png".format(childName)
+        #imagePath = "D:/{}.png".format(childName) 
+        ExtAPI.Graphics.ExportImage(imagePath)
+________________________________"""
