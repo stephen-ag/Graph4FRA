@@ -1,0 +1,31 @@
+#I had the same issue with no codec specified or with codec = 'pcms32le', 
+#the one that worked for me was pcm_s16le. 
+
+# Python code to convert video to audio
+import speech_recognition as sr
+import moviepy.editor as mp
+
+# Insert Local Video File Path
+clip1 = mp.AudioFileClip(r"C:/Users/arpuste/Downloads/KT20230712.mp4")
+clip = clip1.subclip("00:00:23","00:00:46")   #audio from 13 to 15 seconds
+
+# Insert Local Audio File Path
+$clip.write_audiofile(r"C:/Users/arpuste/Downloads/convert.wav", codec='pcm_s16le)
+clip.write_audiofile(r"C:/Users/arpuste/Downloads/convert.mp3")
+
+# initialize the recognizer
+r=sr.Recognizer()
+audio=sr.AudioFile(r"C:/Users/arpuste/Downloads/convert2.wav")
+
+with audio as source:
+    # listen for the data (load audio to memory)
+    audio_file=r.record(source)
+
+# recognize (convert from speech to text)
+result = r.recognize_google(audio_file)
+
+with open('recog2.txt', mode='w') as file:
+    file.write("speech recognised")
+    file.write("\n")
+    file.write(result)
+    print(" Now file is ready")
